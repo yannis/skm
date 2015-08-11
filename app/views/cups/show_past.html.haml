@@ -158,15 +158,15 @@
   %h3= t 'cups.show.social.title'
 
   %p
-    = link_to "<i class='fa fa-twitter'></i> | twitter".html_safe, "https://twitter.com/kendo_in_geneva", id: 'twitter_icon', class: "btn btn-twitter"
-    - if I18n.locale == :fr
-      = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Cette année, je vais à la coupe Kasahara!", via: "kendo_in_geneva", lang: 'fr', related: "kendo_in_geneva", hashtags: "kasa2013"}
-    - else
-      = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Checkout the #{ENV['MAILER_HOST']} webpage!", via: "kendo_in_geneva", related: "kendo_in_geneva", hashtags: "kasa2013"}
-    :javascript
-      !function(d,s,id){
-        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}
-      }(document, 'script', 'twitter-wjs');
+    / = link_to "<i class='fa fa-twitter'></i> | twitter".html_safe, "https://twitter.com/kendo_in_geneva", id: 'twitter_icon', class: "btn btn-twitter"
+    / - if I18n.locale == :fr
+    /   = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Cette année, je vais à la coupe Kasahara!", via: "kendo_in_geneva", lang: 'fr', related: "kendo_in_geneva", hashtags: "kasa2013"}
+    / - else
+    /   = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Checkout the #{ENV['MAILER_HOST']} webpage!", via: "kendo_in_geneva", related: "kendo_in_geneva", hashtags: "kasa2013"}
+    / :javascript
+    /   !function(d,s,id){
+    /     var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}
+    /   }(document, 'script', 'twitter-wjs');
   %p
     = link_to "<i class='fa fa-facebook'></i> | facebook".html_safe, "https://www.facebook.com/kendogeneve", id: 'facebook_icon', class: "btn btn-facebook"
     - if I18n.locale == :fr

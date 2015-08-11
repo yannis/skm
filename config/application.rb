@@ -37,5 +37,10 @@ module Skm
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.assets.precompile += %w( html5shiv.js )
+
+    config.i18n.default_locale = :fr
+
+    config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
   end
 end
