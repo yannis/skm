@@ -7,7 +7,6 @@ if Rails.env.production?
 
     # Increase upload performance by configuring your region
     config.fog_region = ENV['FOG_REGION']
-    config.fog_path_style  = true
     #
     # Don't delete files from the store
     # config.existing_remote_files = "ignore"
