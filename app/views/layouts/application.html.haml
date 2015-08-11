@@ -1,0 +1,53 @@
+!!! 5
+%html
+  %head
+    %meta{charset: "UTF-8"}
+    %title= yield :title
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    %meta{name: "author", content: "Yannis Jaquet"}/
+    %meta{name: "robots", content: "all"}
+    %meta{name: 'description', content: "Kasa cup"}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'application', media: nil, rel: "stylesheet"
+    /[if IE]
+      = javascript_include_tag 'html5shiv'
+    = favicon_link_tag
+  %body
+    .container-fluid
+      = render "layouts/navigation"
+      = render "layouts/flash"
+      = yield
+    = render "layouts/footer"
+    :javascript
+      (function(doc) {
+        window.App = {
+          locale: '#{I18n.locale}'
+        }
+      })(document)
+    = javascript_include_tag 'application'
+    - if Rails.env.production?
+      :javascript
+        var _gaq=[['_setAccount','#{ ENV['GOOGLE_ACCOUNT_ID'] }'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+
+    / - if I18n.locale == :fr
+    /   :javascript
+    /     (function(d, s, id) {
+    /       var js, fjs = d.getElementsByTagName(s)[0];
+    /       if (d.getElementById(id)) return;
+    /       js = d.createElement(s); js.id = id;
+    /       js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=#{ ENV['FACEBOOK_APP_ID'] }";
+    /       fjs.parentNode.insertBefore(js, fjs);
+    /     }(document, 'script', 'facebook-jssdk'));
+    / - else
+    /   :javascript
+    /     (function(d, s, id) {
+    /       var js, fjs = d.getElementsByTagName(s)[0];
+    /       if (d.getElementById(id)) return;
+    /       js = d.createElement(s); js.id = id;
+    /       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{ ENV['FACEBOOK_APP_ID'] }";
+    /       fjs.parentNode.insertBefore(js, fjs);
+    /     }(document, 'script', 'facebook-jssdk'));

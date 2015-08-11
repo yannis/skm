@@ -1,0 +1,11 @@
+en:
+  layout:
+    header:
+      title: SKM
+      title_em: "Luzern, Switzerland"
+    footer:
+      cright: The SKM website is made by the kendo section of the
+      media: "Pics, vids, links and more…"
+    form:
+      mandatory: marks mandatory fields
+      date_placeholder: dd-mm-yyyy

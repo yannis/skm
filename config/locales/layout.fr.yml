@@ -1,0 +1,12 @@
+fr:
+  layout:
+    header:
+      title: SKM
+      title_em: "Lzern, Suisse"
+    footer:
+    footer:
+      cright: Le site des SKM a été créé par la section kendo du
+      media: "Photos, vidéos, liens and plus encore…"
+    form:
+      mandatory: champs nécessaires
+      date_placeholder: jj-mm-aaaa
