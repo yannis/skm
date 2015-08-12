@@ -22,6 +22,4 @@ if Rails.env.production?
     # Fail silently.  Useful for environments such as Heroku
     config.fail_silently = true
   end
-
-  Fog.credentials = { path_style: true }
 end
