@@ -1,4 +1,4 @@
-.col-xs-12.col-md-8
+.col-xs-12.col-md-12
   .row
     .jumbotron
       %h1
@@ -86,87 +86,130 @@
     .col-xs-12.col-md-12.venue-title
       %h2= t '.venue.title'
     .col-xs-12.col-md-6.venue-details
-      %p=raw t '.venue.a', stade_du_bout_du_monde: link_to('Stade du Bout-du-Monde', 'http://www.ville-geneve.ch/plan-ville/sports/centre-sportif-bout-monde/')
+      %p=raw t '.venue.a', link_to_location: link_to('Turnhalle Utenberg Luzern', 'http://map.search.ch/Luzern,Utenbergstr.1/')
       %h3= t '.venue.address'
       %p
-        Centre sportif du Bout-du-Monde, Hall A
+        Turnhalle Utenberg Luzern
         %br
-        Route de Vessy 12
+        Utenbergstrasse 1
         %br
-        1206 Genève
-        %br
+        6006 Luzern
         %em
-          GPS: 46.180588,6.155893
+          GPS: 47.0613066,8.3254636
     .col-xs-12.col-md-6.venue-map
-      = link_to "Google map to the competition hall", "https://maps.google.ch/maps?hl=fr&ie=UTF8&q=centre+sportif+du+bout+du+monde&fb=1&gl=ch&hq=centre+sportif+du+bout+du+monde&cid=0,0,2906637816380334854&t=m&ll=46.182846,6.156163&spn=0.007131,0.013733&z=16", id: 'google_map'
+      = link_to "Google map to the competition hall", "https://www.google.ch/maps/place/Utenbergstrasse+1,+6006+Luzern/@47.0613066,8.3254636,16z/data=!4m6!1m3!3m2!1s0x478ffb8c575e7c49:0x763df88011276fb2!2sUtenbergstrasse+1,+6006+Luzern!3m1!1s0x478ffb8c575e7c49:0x763df88011276fb2?hl=en", id: 'google_map'
   .row.accomodation_contact
     .col-xs-12.col-md-6.venue
       %h2= t '.accomodation.title'
-      %p=raw t '.accomodation.dormitory'
-      %p=raw t '.accomodation.hotels'
+      %h3 Hotels in der Nähe der Turnhalle
+      %table
+        %tbody
+          %tr
+            %th 0.6 km
+            %td Hotel Montana, 4 *, Adligenswilerstrasse 22, 6002 Luzern
+          %tr
+            %th 1.8 km
+            %td Hotel Royal, 3 *, Rigistrasse 22, 6006 Luzern
+          %tr
+            %th 1.8 km
+            %td Ibis Styles, 3 *, Friedenstrasse 8, 6004 Luzern
+          %tr
+            %th 2.0 km
+            %td Hotel Rebstock, 4 *, St. Leodegarstrasse 3, 6006 Luzern
+          %tr
+            %th 2.5 km
+            %td Hotel Continental, 4 *, Murbacherstrasse 4, 6002 Luzern (Referees!)
+          %tr
+            %th 3.5 km
+            %td Hotel Alpha, 2 *, Zähringerstrasse 24, 6003 Luzern
+          %tr
+            %th 3.5 km
+            %td Ibis Budget, 1 *, Kellerstrasse 6, 6005 Luzern
+          %tr
+            %th 3.5 km
+            %td Youth Hostel Luzern, Sedelstrasse 12, 6004 Luzern
+      %h3 Hotels in der Nähe der Sayonaraparty (Restaurant Eat ChaCha)
+      %table
+        %tbody
+          %tr
+            %th 2.5 km
+            %td Hotel Continental, 4 *, Murbacherstrasse 4, 6002 Luzern
+          %tr
+            %th 0.7 km
+            %td Hotel Alpha, 2 *, Zähringerstrasse 24, 6003 Luzern
+          %tr
+            %th 0.9 km
+            %td Ibis Budget, 1 *, Kellerstrasse 6, 6005 Luzern
+          %tr
+            %th 1.3 km
+            %td Ibis Styles, 3 *, Friedenstrasse 8, 6004 Luzern
+          %tr
+            %th 2.5 km
+            %td Hotel Royal, 3 *, Rigistrasse 22, 6006 Luzern
+
     .col-xs-12.col-md-6.contact
       %h2= t '.contact.title'
       %p=raw t '.contact.text', mail: mail_to("info@kendo-geneve.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")
 
-.col-xs-12.col-md-4
-  = render "current_user_resume" unless @cup.year == 2014
+/ .col-xs-12.col-md-4
+/   = render "current_user_resume" unless @cup.year == 2014
 
-  - if @headline.present?
-    .panel.panel-default.headlines
-      .panel-heading
-        %h2= t 'headlines.title'
-      .panel-body
-        %h4
-          = @headline.title
-          %small
-            = @headline.created_at.to_s :day_month_year
-        =raw @headline.content
-      .panel-footer
-        = link_to t('headlines.link'), cup_headlines_path(@cup)
+/   - if @headline.present?
+/     .panel.panel-default.headlines
+/       .panel-heading
+/         %h2= t 'headlines.title'
+/       .panel-body
+/         %h4
+/           = @headline.title
+/           %small
+/             = @headline.created_at.to_s :day_month_year
+/         =raw @headline.content
+/       .panel-footer
+/         = link_to t('headlines.link'), cup_headlines_path(@cup)
 
-  / .panel.panel-default.competition
-  /   .panel-heading
-  /     %h2= t '.tournament.title'
-  /   .panel-body
-  /     %p=raw t '.tournament.a'
-  /     %figure.img-thumbnail
-  /       = image_tag 'kasahara_toshiaki.jpg'
-  /       %figcaption Kasahara Toshiaki sensei
-  /     %p=raw t '.tournament.b'
+/   / .panel.panel-default.competition
+/   /   .panel-heading
+/   /     %h2= t '.tournament.title'
+/   /   .panel-body
+/   /     %p=raw t '.tournament.a'
+/   /     %figure.img-thumbnail
+/   /       = image_tag 'kasahara_toshiaki.jpg'
+/   /       %figcaption Kasahara Toshiaki sensei
+/   /     %p=raw t '.tournament.b'
 
-  = form_tag "http://kendo-geneve.us6.list-manage.com/subscribe/post", class: "form" do
-    = hidden_field_tag :u, "5545e540aff9e8b07df2f5531"
-    = hidden_field_tag :id, "4b7d62b6b3"
-    .panel.panel-default.contact
-      .panel-heading
-        %h3
-          = label_tag 'EMAIL', "Newsletter"
-      .panel-body.form-inline
-        .form-group
-          = email_field_tag 'EMAIL', nil, required: true, placeholder: t('.newsletter.email'), class: "form-control"
-          = button_tag t('.newsletter.button'), class: "btn btn-info"
-        %p.help-block= t('.newsletter.register')
+/   = form_tag "http://kendo-geneve.us6.list-manage.com/subscribe/post", class: "form" do
+/     = hidden_field_tag :u, "5545e540aff9e8b07df2f5531"
+/     = hidden_field_tag :id, "4b7d62b6b3"
+/     .panel.panel-default.contact
+/       .panel-heading
+/         %h3
+/           = label_tag 'EMAIL', "Newsletter"
+/       .panel-body.form-inline
+/         .form-group
+/           = email_field_tag 'EMAIL', nil, required: true, placeholder: t('.newsletter.email'), class: "form-control"
+/           = button_tag t('.newsletter.button'), class: "btn btn-info"
+/         %p.help-block= t('.newsletter.register')
 
-  %h3= t '.social.title'
+/   %h3= t '.social.title'
 
-  / %p
-  /   = link_to "<i class='fa fa-twitter'></i> | twitter".html_safe, "https://twitter.com/kendo_in_geneva", id: 'twitter_icon', class: "btn btn-twitter"
-  /   - if I18n.locale == :fr
-  /     = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Cette année, je vais à la coupe Kasahara!", via: "kendo_in_geneva", lang: 'fr', related: "kendo_in_geneva", hashtags: "kasa2013"}
-  /   - else
-  /     = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Checkout the kasaharacup.com webpage!", via: "kendo_in_geneva", related: "kendo_in_geneva", hashtags: "kasa2013"}
-  /   :javascript
-  /     !function(d,s,id){
-  /       var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}
-  /     }(document, 'script', 'twitter-wjs');
-  %p
-    = link_to "<i class='fa fa-facebook'></i> | facebook".html_safe, "https://www.facebook.com/kendogeneve", id: 'facebook_icon', class: "btn btn-facebook"
-    - if I18n.locale == :fr
-      .fb-like{data: {href: "http://#{ENV['MAILER_HOST']}/fr", send: "true", layout: "button_count", width: "100", 'show-faces' => "false"}}
-    - else
-      .fb-like{data: {href: "http://#{ENV['MAILER_HOST']}/en", send: "true", layout: "button_count", width: "100", 'show-faces' => "false"}}
-  %p
-    = link_to "<i class='fa fa-flickr'></i> | flickr".html_safe, "https://www.flickr.com/photos/8469782@N03", id: 'flickr_icon', class: "btn btn-flickr"
-  %p
-    %script{src: "https://apis.google.com/js/platform.js"}
-    .g-ytsubscribe{data: {channel: "KendoGeneva", layout: "default", count: "default"}}
+/   %p
+/     = link_to "<i class='fa fa-twitter'></i> | twitter".html_safe, "https://twitter.com/kendo_in_geneva", id: 'twitter_icon', class: "btn btn-twitter"
+/     - if I18n.locale == :fr
+/       = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Cette année, je vais à la coupe Kasahara!", via: "kendo_in_geneva", lang: 'fr', related: "kendo_in_geneva", hashtags: "kasa2013"}
+/     - else
+/       = link_to 'Tweet', "https://twitter.com/share", class: "twitter-share-button", data: {url: "http://#{ENV['MAILER_HOST']}", text: "Checkout the kasaharacup.com webpage!", via: "kendo_in_geneva", related: "kendo_in_geneva", hashtags: "kasa2013"}
+/     :javascript
+/       !function(d,s,id){
+/         var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}
+/       }(document, 'script', 'twitter-wjs');
+/   %p
+/     = link_to "<i class='fa fa-facebook'></i> | facebook".html_safe, "https://www.facebook.com/kendogeneve", id: 'facebook_icon', class: "btn btn-facebook"
+/     - if I18n.locale == :fr
+/       .fb-like{data: {href: "http://#{ENV['MAILER_HOST']}/fr", send: "true", layout: "button_count", width: "100", 'show-faces' => "false"}}
+/     - else
+/       .fb-like{data: {href: "http://#{ENV['MAILER_HOST']}/en", send: "true", layout: "button_count", width: "100", 'show-faces' => "false"}}
+/   %p
+/     = link_to "<i class='fa fa-flickr'></i> | flickr".html_safe, "https://www.flickr.com/photos/8469782@N03", id: 'flickr_icon', class: "btn btn-flickr"
+/   %p
+/     %script{src: "https://apis.google.com/js/platform.js"}
+/     .g-ytsubscribe{data: {channel: "KendoGeneva", layout: "default", count: "default"}}

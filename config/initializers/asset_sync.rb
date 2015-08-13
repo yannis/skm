@@ -1,4 +1,4 @@
-if Rails.env.production?
+# if Rails.env.production?
   AssetSync.configure do |config|
     config.fog_provider = ENV['FOG_PROVIDER']
     config.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
@@ -22,4 +22,4 @@ if Rails.env.production?
     # Fail silently.  Useful for environments such as Heroku
     config.fail_silently = true
   end
-end
+# end

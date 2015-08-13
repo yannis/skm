@@ -54,7 +54,7 @@ en:
 
       venue:
         title: Venue
-        a: "Since a few years, the tournament is taking place at the %{stade_du_bout_du_monde}."
+        a: "This year, the championships will be held at the %{link_to_location}."
         address: Coordinates
         map_link: Larger map
 

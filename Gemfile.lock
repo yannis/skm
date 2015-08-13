@@ -562,6 +562,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  figaro
   font-awesome-sass
   gibbon (= 1.2.0)
   guard

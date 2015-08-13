@@ -51,7 +51,7 @@ fr:
 
       venue:
         title: Où est-ce que ça se passe?
-        a: "Comme chaque année, la compétition se déroulera au %{stade_du_bout_du_monde}."
+        a: "Cette année la compétition se déroulera au %{link_to_location}."
         address: Coordonnées
         map_link: Agrandir le plan
 
