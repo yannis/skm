@@ -23,17 +23,14 @@ en:
       fees:
         title: Registration fees
         adults:
-          title: Adults (over 16 yo)<br><em>+ Sunday lunch</em>
-          fee: "%{adult_fees_chf} CHF or %{adult_fees_eur} €"
+          title: Adults (over 18 yo)
+          fee: "%{adult_fees_chf} CHF"
         juniors:
-          title: Juniors (8 to 16 years old)<br><em>+ Sunday lunch</em>
-          fee: "%{junior_fees_chf} CHF or %{junior_fees_eur} €"
-        night:
-          title: Night at the dormitory<br><em>+ breakfast (with own sleeping bag)</em>
-          fee: "%{dormitory_fees_chf} CHF or %{dormitory_fees_eur} €"
-        dinner:
-          title: Saturday night dinner
-          fee: "%{dinner_fees_chf} CHF or %{dinner_fees_eur} €"
+          title: Juniors (to 18 years old)
+          fee: "%{junior_fees_chf} CHF"
+        teams:
+          title: Team
+          fee: "%{team_fees_chf} CHF/team"
       newsletter:
         register: "Subscribe to our mailing list to get the latest new about the competition"
         email: Email address

@@ -20,17 +20,14 @@ fr:
       fees:
         title: Combien ça coûte?
         adults:
-          title: Adultes (plus de 16 ans)<br><em>+ lunch du dimanche</em>
-          fee: "%{adult_fees_chf} CHF ou %{adult_fees_eur} €"
+          title: Adultes (plus de 18 ans)
+          fee: "%{adult_fees_chf} CHF"
         juniors:
-          title: Juniors (8 à 16 ans)<br><em>+ lunch du dimanche</em>
-          fee: "%{junior_fees_chf} CHF ou %{junior_fees_eur} €"
-        night:
-          title: Nuit au dortoir<br><em>+ petit-déjeuner (avec votre sac de couchage)</em>
-          fee: "%{dormitory_fees_chf} CHF ou %{dormitory_fees_eur} €"
-        dinner:
-          title: Repas du samedi soir<br><em>+ une boisson comprise</em>
-          fee: "%{dinner_fees_chf} CHF ou %{dinner_fees_eur} €"
+          title: Juniors (jusqu'à 18 ans)
+          fee: "%{junior_fees_chf} CHF"
+        teams:
+          title: Équipe
+          fee: "%{team_fees_chf} CHF/team"
       newsletter:
         register: "Inscrivez-vous pour recevoir toutes les informations concernant la compétition"
         email: Adresse email
