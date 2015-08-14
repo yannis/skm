@@ -6,6 +6,7 @@ class User < Kendocup::User
   after_save :register_to_mailing_list
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    byebug
     user = User.where(provider: "facebook", uid: auth.uid).first
     unless user
       birthday = auth.extra.raw_info.birthday.present? ? Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y') : nil
