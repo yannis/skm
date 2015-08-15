@@ -36,7 +36,7 @@
             = link_to "<span class='glyphicon glyphicon-plus'></span> #{t("navigation.register.text")}".html_safe, user_session_path, title: t("navigation.register.title").html_safe,  data: {toggle: "tooltip", placement: "bottom"}, class: "bs-tooltip btn btn-info navbar-btn navbar-btn btn-sm"
       %ul.nav.navbar-nav.navbar-right
         %li#lang
-          = link_to (@inverse_locale == 'fr' ? 'français' : 'english'), {locale: @inverse_locale}
+          = link_to (@inverse_locale == 'fr' ? 'français' : 'deutsch'), {locale: @inverse_locale}
         - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

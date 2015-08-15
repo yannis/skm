@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, class_name: 'User', module: :devise, except: [:omniauth_callbacks], controllers: {registrations: "users/registrations"}
 
-  scope ":locale", locale: /fr|en/ do |locale|
+  scope ":locale", locale: /fr|de/ do |locale|
 
     resources :cups, only: [:index, :show] do
       resources :headlines, only: [:index, :show]

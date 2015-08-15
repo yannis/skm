@@ -33,20 +33,20 @@ class ApplicationController < Kendocup::ApplicationController
       notice = notice
       alert = alert
     end
-    default_locale = 'en'
+    default_locale = 'de'
     begin
       request_language = request.env['HTTP_ACCEPT_LANGUAGE'].split('-')[0]
-      request_language = (request_language.nil? || !['en', 'fr'].include?(request_language[/[^,;]+/])) ? nil : request_language[/[^,;]+/]
-      params_locale = params[:locale] if params[:locale] == 'en' or params[:locale] == 'fr'
+      request_language = (request_language.nil? || !['de', 'fr'].include?(request_language[/[^,;]+/])) ? nil : request_language[/[^,;]+/]
+      params_locale = params[:locale] if params[:locale] == 'de' or params[:locale] == 'fr'
 
       @locale = params_locale || session[:locale] || request_language || default_locale
       I18n.locale = session[:locale] = @locale
 
-      @inverse_locale = (@locale == 'en' ? 'fr' : 'en')
+      @inverse_locale = (@locale == 'de' ? 'fr' : 'de')
 
     rescue
       I18n.locale = session[:locale] = @locale = default_locale
-      @inverse_locale = (@locale == 'en' ? 'fr' : 'en')
+      @inverse_locale = (@locale == 'de' ? 'fr' : 'de')
     end
   end
 
@@ -58,7 +58,7 @@ class ApplicationController < Kendocup::ApplicationController
   def store_location
     session[:return_to] = request.fullpath
   end
-  
+
   def back
     redirect_back_or_default
   end

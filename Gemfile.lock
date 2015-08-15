@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/yannis/kendocup.git
-  revision: 73ea895e00f80dfc72d552219aa81030bc526940
+  revision: 5d335196fb6a967731a86c6c3cec9eb54ca37146
   specs:
     kendocup (0.0.1)
       activeadmin (= 1.0.0.pre1)
@@ -152,7 +152,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.8)
     excon (0.45.4)
-    execjs (2.5.2)
+    execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -294,7 +294,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    haml (4.0.6)
+    haml (4.0.7)
       tilt
     haml-rails (0.9.0)
       actionpack (>= 4.0.1)
@@ -427,7 +427,7 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)

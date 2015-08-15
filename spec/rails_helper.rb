@@ -47,7 +47,7 @@ RSpec.configure do |config|
 
 
   config.before(:each) do
-    I18n.locale = :en
+    I18n.locale = :de
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -67,8 +67,8 @@ RSpec.configure do |config|
 
 
   def should_be_asked_to_sign_in
-    it {expect(response).to redirect_to("http://test.host/users/sign_in?locale=en")}
-    it {expect(flash.alert).to eql "You need to sign in or sign up before continuing."}
+    it {expect(response).to redirect_to("http://test.host/users/sign_in?locale=de")}
+    it {expect(flash.alert).to eql "Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können."}
   end
 
   def should_not_be_authorized
