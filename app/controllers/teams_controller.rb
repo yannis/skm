@@ -4,7 +4,6 @@ class TeamsController < ApplicationController
   respond_to :html
 
   def index
-    @ronins = @cup.participations.ronins.map(&:kenshi)
     @teams = @cup.teams.order(:name)
     respond_with @teams
   end

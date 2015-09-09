@@ -73,7 +73,7 @@ class KenshisController < ApplicationController
       @kenshi.first_name = @kenshi.last_name = @kenshi.email = @kenshi.dob = nil
       @title = t("kenshis.new.duplicate", full_name: origin_kenshi.full_name)
       origin_kenshi.participations.each do |participation|
-        @kenshi.participations << Participation.new(category: participation.category, team: participation.team, ronin: participation.ronin)
+        @kenshi.participations << Participation.new(category: participation.category, team: participation.team)
       end
     else
       @kenshi.club = @user.club if @user.present?
@@ -134,7 +134,7 @@ class KenshisController < ApplicationController
         @kenshi.first_name = @kenshi.last_name = @kenshi.email = @kenshi.dob = nil
         @title = t("kenshis.new.duplicate", full_name: origin_kenshi.full_name)
         origin_kenshi.participations.each do |participation|
-          @kenshi.participations << Participation.new(category: participation.category, team: participation.team, ronin: participation.ronin)
+          @kenshi.participations << Participation.new(category: participation.category, team: participation.team)
         end
       else
         @kenshi.club = @user.club if @user.present?
@@ -224,6 +224,6 @@ class KenshisController < ApplicationController
     end
 
     def my_sanitizer
-      params.require(:kenshi).permit(:first_name, :last_name, :email, :dob, :female, :club_id, :club_name, :grade, :club_name, purchases_attributes: [:id, :product_id, :_destroy], individual_category_ids: [], participations_attributes: [:id, :category_type, :category_id, :ronin, :team_name, :_destroy], product_ids: [])
+      params.require(:kenshi).permit(:first_name, :last_name, :email, :dob, :female, :club_id, :club_name, :grade, :club_name, purchases_attributes: [:id, :product_id, :_destroy], individual_category_ids: [], participations_attributes: [:id, :category_type, :category_id, :team_name, :_destroy], product_ids: [])
     end
 end

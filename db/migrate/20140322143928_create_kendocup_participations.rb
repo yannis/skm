@@ -6,7 +6,6 @@ class CreateKendocupParticipations < ActiveRecord::Migration
       t.belongs_to :kenshi, index: true
       t.integer :pool_number
       t.integer :pool_position
-      t.boolean :ronin
 
       t.timestamps
     end

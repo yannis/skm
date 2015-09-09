@@ -22,10 +22,6 @@
             = g.hidden_field :category_type
             = g.hidden_field :category_id
             .col-sm-12
-              = g.check_box :ronin
-              = g.label :ronin
-              %p.help-block= t '.ronin_info', category_name: c.name
-            .col-sm-12
               = hidden_field_tag "#{g.object_name}[team_name]", p.team.try(:name), class: "col-sm-12", data: {behaviour: 'select2', options: c.teams.all.map{|c| {id: c.name, text: c.name}}}
               %br/
               %p.help-block= t '.team_info'
