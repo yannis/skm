@@ -3,7 +3,7 @@ en:
     # models:
     #   kenshi: registration
     attributes:
-      kenshi:
+      kendocup/kenshi:
         mr: Mr
         ms: Ms
         first_name: First name
@@ -14,9 +14,10 @@ en:
         # female: Woman
         # male: Man
         categories: Categories
+        remarks: Budopass number
     errors:
       models:
-        kenshi:
+        kendocup/kenshi:
           attributes:
             dob:
               blank: 'Date of birth (DOB) is required for junior registrations'
