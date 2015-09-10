@@ -24,6 +24,7 @@
 /config/database.yml
 /config/application.yml
 .env
+/postgres_backup
 
 # Ignore application configuration
 /config/application.yml
