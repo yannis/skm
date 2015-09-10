@@ -31,6 +31,10 @@ de:
       updated: Ihr Passwort wurde geändert. Sie sind jetzt angemeldet.
       updated_not_active: Ihr Passwort wurde geändert.
     registrations:
+      title: Register
+      edit_title: Edit your account
+      cancel_title: Destroy your account
+      cancel_verif: "Warning! All your data are going to be erased. This is irreversible!"
       destroyed: Ihr Account wurde gelöscht.
       signed_up: Sie haben sich erfolgreich registriert.
       signed_up_but_inactive: Sie haben sich erfolgreich registriert. Wir konnten Sie jedoch nicht anmelden, weil Ihr Account noch nicht aktiviert ist.

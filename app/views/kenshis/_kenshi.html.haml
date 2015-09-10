@@ -22,6 +22,9 @@
     %tr
       %th{colspan: 2}= Kendocup::Kenshi.human_attribute_name :grade
       %td{colspan: 2}= kenshi.grade
+    %tr
+      %th{colspan: 2}= Kendocup::Kenshi.human_attribute_name :remarks
+      %td{colspan: 2}= kenshi.remarks.presence || 'missing'
     - if current_user_admin_or_owner?(kenshi)
       %tr
         %th{colspan: 2}= t("kenshi.registered_by")

@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe KenshisController, type: :controller do
 
   def valid_params
-    {last_name: "a_last_name", female: false, first_name: "a_first_name", grade: '1Dan', club_name: "a_club", cup: cup, dob: 20.years.ago}
+    {last_name: "a_last_name", female: false, first_name: "a_first_name", grade: '1Dan', club_name: "a_club", cup: cup, dob: 20.years.ago, remarks: "MY_BUDO_PASS_NUMBER"}
   end
 
   before {
@@ -114,6 +114,7 @@ RSpec.describe KenshisController, type: :controller do
         it {expect(response).to redirect_to(cup_user_path(cup, basic_user)) }
         it {expect(flash[:notice]).to match /Kenshi successfully registered/}
         it {expect(assigns(:kenshi).user_id).to eql basic_user.id}
+        it {expect(assigns(:kenshi).remarks).to eql "MY_BUDO_PASS_NUMBER"}
       end
 
       describe "when POST to :create with invalid data," do

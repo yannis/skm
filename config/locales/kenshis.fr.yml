@@ -14,6 +14,7 @@ fr:
         female: Femme
         male: Homme
         categories: Catégories
+        remarks: Numéro de Budopass
     errors:
       models:
         kendocup/kenshi:
