@@ -8,6 +8,14 @@ GIT
       sprockets (< 2.13)
 
 GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: 77cd37d74e04e6a1134565ada15bbf50a79482e7
+  specs:
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
+
+GIT
   remote: git://github.com/yannis/kendocup.git
   revision: 107386758ca30b16ce9d3b4940ab2ec14fc18c1d
   specs:
@@ -551,6 +559,7 @@ DEPENDENCIES
   activeadmin (= 1.0.0.pre1)
   airbrake
   asset_sync
+  best_in_place!
   bootstrap-sass (~> 3.3.4)
   bootstrap3-datetimepicker-rails
   byebug
