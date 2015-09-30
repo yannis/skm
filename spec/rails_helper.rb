@@ -154,6 +154,6 @@ RSpec.configure do |config|
 
   def deadline_passed
     it {expect(response).to redirect_to root_path(locale: I18n.locale)}
-    it {expect(flash[:alert]).to eq I18n.t("kenshis.deadline_passed", email: 'info@kendo-geneve.ch')}
+    it {expect(flash[:alert]).to eq I18n.t("kenshis.deadline_passed", email: ' annick.chevillot@bluewin.ch')}
   end
 end
