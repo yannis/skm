@@ -10,8 +10,6 @@ class KenshisController < ApplicationController
   before_filter :check_deadline, only: [:new, :edit, :update, :create, :destroy]
   respond_to :html
 
-  # autocomplete :kenshi, :club, scopes: [:unique_by_club], full_model: true
-
   def index
     @current_cup = @cup.presence || @current_cup
     if @user && !user_signed_in?
@@ -73,21 +71,13 @@ class KenshisController < ApplicationController
       @kenshi.first_name = @kenshi.last_name = @kenshi.email = @kenshi.dob = nil
       @title = t("kenshis.new.duplicate", full_name: origin_kenshi.full_name)
       origin_kenshi.participations.each do |participation|
-        @kenshi.participations << Participation.new(category: participation.category, team: participation.team)
+        @kenshi.participations << Kendocup::Participation.new(category: participation.category, team: participation.team)
       end
     else
       @kenshi.club = @user.club if @user.present?
       @title = t('kenshis.new.title')
     end
     @kenshi.female = false if @kenshi.female.nil?
-    # @cup.team_categories.each do |cat|
-    #   @kenshi.participations.build category: cat
-    # end
-    # @cup.individual_categories.each do |cat|
-    #   @kenshi.participations.build category: cat
-    # end
-    # @participations_to_teams = @kenshi.participations.select{|p| p.category.is_a? TeamCategory}
-    # @participations_to_ind = @kenshi.participations.select{|p| p.category.is_a? IndividualCategory}
     respond_with @kenshi
   end
 
