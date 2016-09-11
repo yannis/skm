@@ -1,8 +1,12 @@
 en:
   layout:
     header:
-      title: SKM
-      title_em: "Luzern, Switzerland"
+      2015:
+        title: SKM
+        title_em: "Luzern, Switzerland"
+      2016:
+        title: SKM
+        title_em: "Aarau, Switzerland"
     footer:
       cright: The SKM website is made by the kendo section of the
       media: "Pics, vids, links and more…"

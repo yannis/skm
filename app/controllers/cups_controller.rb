@@ -23,10 +23,10 @@ class CupsController < ApplicationController
             begin
               render "show_past_#{@cup.year.to_i}"
             rescue ActionView::MissingTemplate
-              render "show_past"
+              render "show_past_#{@cup.year}"
             end
           else
-            render "show"
+            render "show_#{@cup.year}"
           end
         }
       end

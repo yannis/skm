@@ -12,7 +12,7 @@ RSpec.describe CupsController, type:  :controller do
       it {expect(response).to be_success}
       it {expect(assigns(:cup)).to_not be_nil}
       it {expect(assigns(:cup)).to eql cup1}
-      it {expect(response).to render_template(:show)}
+      it {expect(response).to render_template("show_#{assigns(:cup)}")}
       it {expect(flash).to be_empty}
       it {expect(assigns(:cup)).to eql cup1}
     end

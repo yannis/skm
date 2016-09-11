@@ -1,8 +1,12 @@
 fr:
   layout:
     header:
-      title: SKM
-      title_em: "Lucerne, Suisse"
+      year_2015:
+        title: SKM
+        title_em: "Lucerne, Suisse"
+      year_2016:
+        title: SKM
+        title_em: "Aarau, Suisse"
     footer:
     footer:
       cright: Le site des SKM a été créé par la section kendo du

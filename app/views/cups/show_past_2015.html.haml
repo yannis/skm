@@ -2,7 +2,7 @@
   .row
     .jumbotron
       %h1
-        = t 'layout.header.title'
+        = t "layout.header.year_#{@cup.year}.title"
         = @cup.year
         %br
         %small
@@ -10,7 +10,7 @@
             = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
           - else
             = "#{l(@cup.start_on, format: :long)}, "
-          = t("layout.header.title_em")
+          = t("layout.header.year_#{@cup.year}.title_em")
   .row#deadline
     .col-xs-12.col-md-12.alert.alert-warning
       - if Time.current > @cup.deadline
