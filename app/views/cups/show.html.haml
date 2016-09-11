@@ -14,13 +14,13 @@
   .row#deadline
     .col-xs-12.col-md-12.alert.alert-warning
       - if Time.current > @cup.deadline
-        =raw t(".deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
+        =raw t("cups.show.deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
       - else
-        =raw t(".deadline", deadline: I18n.l(@cup.deadline, format: :long))
+        =raw t("cups.show.deadline", deadline: I18n.l(@cup.deadline, format: :long))
 
   .row#program
     .col-xs-12.col-md-12
-      %h2= t '.program.title'
+      %h2= t 'cups.show.program.title'
     - @grouped_events.each do |date, events|
       .col-xs-12.col-md-6
         %table.table
@@ -39,7 +39,7 @@
 
   .row#categories_and_fees
     #categories.col-xs-12.col-md-6
-      %h2= t '.categories.title'
+      %h2= t 'cups.show.categories.title'
       %table.table
         %tbody
           - @cup.individual_categories.each do |c|
@@ -68,15 +68,15 @@
                 = t("categories.yo")
 
     #fees.col-xs-12.col-md-6
-      %h2= t '.fees.title'
+      %h2= t 'cups.show.fees.title'
       %table.table
         %tbody
           %tr
-            %th=raw t '.fees.adults.title'
-            %td=raw t '.fees.adults.fee', adult_fees_chf: @cup.adult_fees_chf, adult_fees_eur: @cup.adult_fees_eur
+            %th=raw t 'cups.show.fees.adults.title'
+            %td=raw t 'cups.show.fees.adults.fee', adult_fees_chf: @cup.adult_fees_chf, adult_fees_eur: @cup.adult_fees_eur
           %tr
-            %th=raw t '.fees.juniors.title'
-            %td=raw t '.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
+            %th=raw t 'cups.show.fees.juniors.title'
+            %td=raw t 'cups.show.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
           - @cup.products.each do |product|
             %tr
               %th= product.name
@@ -84,10 +84,10 @@
 
   .row.venue
     .col-xs-12.col-md-12.venue-title
-      %h2= t '.venue.title'
+      %h2= t 'cups.show.venue.title'
     .col-xs-12.col-md-6.venue-details
-      %p=raw t '.venue.a', link_to_location: link_to('Turnhalle Utenberg Luzern', 'http://map.search.ch/Luzern,Utenbergstr.1/')
-      %h3= t '.venue.address'
+      %p=raw t 'cups.show.venue.a', link_to_location: link_to('Turnhalle Utenberg Luzern', 'http://map.search.ch/Luzern,Utenbergstr.1/')
+      %h3= t 'cups.show.venue.address'
       %p
         Turnhalle Utenberg Luzern
         %br
@@ -100,7 +100,7 @@
       = link_to "Google map to the competition hall", "https://www.google.ch/maps/place/Utenbergstrasse+1,+6006+Luzern/@47.0613066,8.3254636,16z/data=!4m6!1m3!3m2!1s0x478ffb8c575e7c49:0x763df88011276fb2!2sUtenbergstrasse+1,+6006+Luzern!3m1!1s0x478ffb8c575e7c49:0x763df88011276fb2?hl=en", id: 'google_map'
   .row.accomodation_contact
     .col-xs-12.col-md-6.venue
-      %h2= t '.accomodation.title'
+      %h2= t 'cups.show.accomodation.title'
       %h3 Hotels in der Nähe der Turnhalle
       %table.table
         %tbody
@@ -148,5 +148,5 @@
             %td Hotel Royal, 3 *, Rigistrasse 22, 6006 Luzern
 
     .col-xs-12.col-md-6.contact
-      %h2= t '.contact.title'
-      %p=raw t '.contact.text', mail: mail_to("annick.chevillot@bluewin.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")
+      %h2= t 'cups.show.contact.title'
+      %p=raw t 'cups.show.contact.text', mail: mail_to("annick.chevillot@bluewin.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")

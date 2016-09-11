@@ -1,10 +1,10 @@
 en:
   layout:
     header:
-      2015:
+      year_2015:
         title: SKM
         title_em: "Luzern, Switzerland"
-      2016:
+      year_2016:
         title: SKM
         title_em: "Aarau, Switzerland"
     footer:
