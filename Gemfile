@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.2.0"
+ruby "2.3.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.9'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -22,7 +22,7 @@ gem 'omniauth-facebook', "2.0.1"
 gem 'omniauth-github'
 gem 'omniauth-google'
 
-gem 'activeadmin', "1.0.0.pre1"
+gem 'activeadmin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -74,7 +74,7 @@ end
 group :developement do
   gem "guard"
   gem "guard-rspec"
-  gem "guard-bundler"
+  # gem "guard-bundler"
   gem "guard-livereload"
   # gem "guard-spring"
   gem "rspec-rails"

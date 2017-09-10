@@ -1,0 +1,128 @@
+.col-xs-12.col-md-12
+  .row
+    .jumbotron
+      %h1
+        = t "layout.header.year_#{@cup.year}.title"
+        = @cup.year
+        %br
+        %small
+          - if @cup.end_on
+            = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
+          - else
+            = "#{l(@cup.start_on, format: :long)}, "
+          = t("layout.header.year_#{@cup.year}.title_em")
+  .row#deadline
+    .col-xs-12.col-md-12.alert.alert-warning
+      - if Time.current > @cup.deadline
+        =raw t("cups.show.deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
+      - else
+        =raw t("cups.show.deadline", deadline: I18n.l(@cup.deadline, format: :long))
+
+  .row#program
+    .col-xs-12.col-md-12
+      %h2= t 'cups.show.program.title'
+    - @grouped_events.each do |date, events|
+      .col-xs-12.col-md-6
+        %table.table
+          %thead
+            %tr
+              %td{colspan: 2}
+                %h3
+                  = l date, format: :short
+          %tbody
+            - for event in events
+              %tr
+                %th
+                  = event.start_on.to_s(:time_only)
+                %td
+                  = event.name
+
+  .row#categories_and_fees
+    #categories.col-xs-12.col-md-6
+      %h2= t 'cups.show.categories.title'
+      %table.table
+        %tbody
+          - @cup.individual_categories.each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+
+          - @cup.team_categories.each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                = "#{c.description},"
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+
+    #fees.col-xs-12.col-md-6
+      %h2= t 'cups.show.fees.title'
+      %table.table
+        %tbody
+          %tr
+            %th=raw t 'cups.show.fees.adults.title'
+            %td=raw t 'cups.show.fees.adults.fee', adult_fees_chf: @cup.adult_fees_chf, adult_fees_eur: @cup.adult_fees_eur
+          %tr
+            %th=raw t 'cups.show.fees.juniors.title'
+            %td=raw t 'cups.show.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
+          - @cup.products.each do |product|
+            %tr
+              %th= product.name
+              %td= "#{product.fee_chf} CHF / #{product.fee_eu} €"
+
+  .row.venue
+    .col-xs-12.col-md-12.venue-title
+      %h2= t 'cups.show.venue.title'
+    .col-xs-12.col-md-6.venue-details
+      %p=raw t 'cups.show.venue.a', link_to_location: link_to('Sporthalle Schachen, Aarau', 'https://map.search.ch/Aarau,Schachenallee-29/')
+      %h3= t 'cups.show.venue.address'
+      %p
+        Sporthalle Schachen
+        %br
+        Schachenallee 29
+        %br
+        5000 Aarau
+        %em
+          GPS: 47.3891506,8.0381781
+    .col-xs-12.col-md-6.venue-map
+      %iframe{src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10804.483380962878!2d8.031215068122338!3d47.39007497917092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47903be9c625ca89%3A0xefe8d5e85f952aec!2sSporthalle+Schachen!5e0!3m2!1sen!2sch!4v1473627759063"}
+  .row.accomodation_contact
+    .col-xs-12.col-md-6.venue
+      %h2= t 'cups.show.accomodation.title'
+      %h3 Hotels in der Nähe der Turnhalle
+      %table.table
+        %tbody
+          %tr
+            %th 0.047 km
+            %td Gasthof zum Schützen AG, Schachenallee 39, 5000 Aarau
+          %tr
+            %th 0.950 km
+            %td Sorell Hotel Aarauerhof, Bahnhofpl. 2, 5000 Aarau
+          %tr
+            %th 3.4 km
+            %td Gasthof zum Schützen AG, Bibersteinerstrasse 4-6, 5022 Rombach
+          %tr
+            %th 4.9 km
+            %td Hotel zum Kreuz, Obere Dorfstrasse 1, 5034 Suhr
+          %tr
+            %th 6.1 km
+            %td Hotel Aarau West, Muhenstrasse 58, 5036 Oberentfelden
+          %tr
+            %th 2.9 km
+            %td TenDoKan, Judo und Ju Jitsu Club Aarau, Delfterstrasse 44, 5004 Aarau
+
+    .col-xs-12.col-md-6.contact
+      %h2= t 'cups.show.contact.title'
+      %p=raw t 'cups.show.contact.text', mail: mail_to("annick.chevillot@bluewin.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")
