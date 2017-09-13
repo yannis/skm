@@ -8,7 +8,13 @@ RSpec.describe UsersController, type: :controller do
   let(:admin_user) {create :kendocup_user, admin: true}
 
   def valid_attributes
-    {last_name: "a_last_name#{rand(1..1000)}", first_name: 'a_first_name', email: "anemail@address.com", password: 'jkasdkjd', password_confirmation: 'jkasdkjd'}
+    {
+      last_name: "a_last_name#{rand(1..1000)}",
+      first_name: 'a_first_name',
+      email: "anemail@address.com",
+      password: 'jkasdkjd',
+      password_confirmation: 'jkasdkjd'
+    }
   end
 
   USER_CONT_METHODS = ["get :show, id: user.to_param, locale: I18n.locale, cup_id: cup.to_param"]
@@ -133,7 +139,7 @@ RSpec.describe UsersController, type: :controller do
 
         it "redirects to the user" do
           put :update, id: user.to_param, user: valid_attributes, locale: I18n.locale, cup_id: cup.to_param
-          expect(response).to render_template "devise/mailer/confirmation_instructions"
+          expect(response).to redirect_to [cup, user]
         end
       end
 
