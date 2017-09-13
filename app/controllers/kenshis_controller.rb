@@ -2,13 +2,16 @@ class KenshisController < ApplicationController
 
   prepend_before_filter :set_user
 
-  load_and_authorize_resource :cup, find_by: :year, class: Kendocup::Cup
-  load_and_authorize_resource :kenshi, shallow: true, class: Kendocup::Kenshi, through: [:cup, :user], param_method: :my_sanitizer
+  # load_and_authorize_resource :user
+  load_and_authorize_resource :cup, find_by: :year, class: "Kendocup::Cup"
+  load_and_authorize_resource :kenshi, find_by: :id, class: "Kendocup::Kenshi", shallow: true, through: [:cup, :user], param_method: :my_sanitizer, parent: false, except: [:new]
 
   before_filter :set_variables, only: [:new, :edit, :update, :create]
   before_filter :set_user
   before_filter :check_deadline, only: [:new, :edit, :update, :create, :destroy]
   respond_to :html
+
+  # autocomplete :kenshi, :club, scopes: [:unique_by_club], full_model: true
 
   def index
     @current_cup = @cup.presence || @current_cup
@@ -32,7 +35,7 @@ class KenshisController < ApplicationController
         filename = Time.now.to_s(:datetime).gsub(/[^0-9a-z]/, '')+'_'+@title.gsub(/[^0-9a-zA-Z]/, "_").gsub('__', "_") + ".csv"
         send_data(
           Kendocup::Kenshi.to_csv(@kenshis),
-          type: 'text/csv; charset=utf-8; header=present',
+          as: 'text/csv; charset=utf-8; header=present',
           filename: filename
         )
       }
@@ -50,6 +53,7 @@ class KenshisController < ApplicationController
   end
 
   def new
+    authorize! :create, Kendocup::Kenshi
     @current_cup = @cup.presence || @current_cup
     if @user.blank? || (@user != current_user && !current_user.admin?)
       redirect_to new_cup_user_kenshi_path(@current_cup, current_user, locale: I18n.locale)
@@ -57,7 +61,7 @@ class KenshisController < ApplicationController
     end
     if @user == current_user && params[:self] == 'true'
       existing_kenshis = current_user.kenshis.where(first_name: current_user.
-        first_name, last_name: current_user.last_name)
+        first_name, last_name: current_user.last_name, cup: @current_cup)
       if existing_kenshis.present?
         redirect_to cup_kenshi_path(@current_cup, existing_kenshis.first, locale: I18n.locale), notice: t("kenshis.self.exist")
         return
@@ -71,13 +75,22 @@ class KenshisController < ApplicationController
       @kenshi.first_name = @kenshi.last_name = @kenshi.email = @kenshi.dob = nil
       @title = t("kenshis.new.duplicate", full_name: origin_kenshi.full_name)
       origin_kenshi.participations.each do |participation|
-        @kenshi.participations << Kendocup::Participation.new(category: participation.category, team: participation.team)
+        @kenshi.participations << Kendocup::Participation.new(category: participation.category, team: participation.team, ronin: participation.ronin)
       end
     else
+      @kenshi = Kendocup::Kenshi.from(current_user)
       @kenshi.club = @user.club if @user.present?
       @title = t('kenshis.new.title')
     end
     @kenshi.female = false if @kenshi.female.nil?
+    # @cup.team_categories.each do |cat|
+    #   @kenshi.participations.build category: cat
+    # end
+    # @cup.individual_categories.each do |cat|
+    #   @kenshi.participations.build category: cat
+    # end
+    # @participations_to_teams = @kenshi.participations.select{|p| p.category.is_a? TeamCategory}
+    # @participations_to_ind = @kenshi.participations.select{|p| p.category.is_a? IndividualCategory}
     respond_with @kenshi
   end
 
@@ -124,7 +137,7 @@ class KenshisController < ApplicationController
         @kenshi.first_name = @kenshi.last_name = @kenshi.email = @kenshi.dob = nil
         @title = t("kenshis.new.duplicate", full_name: origin_kenshi.full_name)
         origin_kenshi.participations.each do |participation|
-          @kenshi.participations << Participation.new(category: participation.category, team: participation.team)
+          @kenshi.participations << Participation.new(category: participation.category, team: participation.team, ronin: participation.ronin)
         end
       else
         @kenshi.club = @user.club if @user.present?
@@ -206,6 +219,7 @@ class KenshisController < ApplicationController
   private
     def set_user
       @user = User.find params[:user_id] if params[:user_id]
+      @products = @cup.products
     end
 
     def set_variables
@@ -214,6 +228,6 @@ class KenshisController < ApplicationController
     end
 
     def my_sanitizer
-      params.require(:kenshi).permit(:first_name, :last_name, :email, :dob, :female, :club_id, :club_name, :grade, :remarks, purchases_attributes: [:id, :product_id, :_destroy], individual_category_ids: [], participations_attributes: [:id, :category_type, :category_id, :team_name, :_destroy], product_ids: [])
+      params.require(:kenshi).permit(:first_name, :last_name, :email, :dob, :female, :club_id, :club_name, :grade, :club_name, purchases_attributes: [:id, :product_id, :_destroy], individual_category_ids: [], participations_attributes: [:id, :category_type, :category_id, :ronin, :team_name, :_destroy], product_ids: [])
     end
 end
