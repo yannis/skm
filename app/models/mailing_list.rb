@@ -1,7 +1,7 @@
 class MailingList
 
   def self.user_subscribed?(user)
-    begin
+    # begin
       if Rails.env.test?
         return true
       else
@@ -10,17 +10,17 @@ class MailingList
         # byebug
         return user_info['success_count'] > 0
       end
-    rescue Exception => e
-      notify_airbrake(e) if Rails.env.production?
-      Rails.logger.error "Mailchimp unreachable: #{e.message}"
-      true
-    end
+    # rescue Exception => e
+    #   notify_airbrake(e) if Rails.env.production?
+    #   Rails.logger.error "Mailchimp unreachable: #{e.message}"
+    #   true
+    # end
   end
 
   def self.subscribe(user)
     unless self.user_subscribed?(user)
       Rails.logger.info "Subscribing #{user.full_name} to mailchimp list"
-      MAILINGLIST.lists.subscribe({id: ENV["MAILCHIMP_LIST_ID"], email: {email: user.email}, merge_vars: {:FNAME => user.first_name, :LNAME => user.last_name}, double_optin: false}) unless ["test"].include?(Rails.env)
+      MAILINGLIST.lists.subscribe({id: ENV["MAILCHIMP_LIST_ID"], email: {email: user.email}, merge_vars: {:FNAME => user.first_name, :LNAME => user.last_name}, double_optin: false}) unless Rails.env.test?
       Rails.logger.info "User #{user.full_name} subscribed to the mailchimp list"
     end
   end

@@ -14,13 +14,13 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem "devise", "3.5.1"
-gem "cancancan"
+gem "devise", "4.3.0"
+gem "cancancan", "1.13.1"
 
-gem 'omniauth-twitter'
-gem 'omniauth-facebook', "2.0.1"
-gem 'omniauth-github'
-gem 'omniauth-google'
+# gem 'omniauth-twitter'
+gem 'omniauth-facebook', "4.0.0"
+# gem 'omniauth-github'
+# gem 'omniauth-google'
 
 gem 'activeadmin'
 
