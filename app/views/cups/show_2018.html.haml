@@ -1,0 +1,128 @@
+.col-xs-12.col-md-12
+  .row
+    .jumbotron
+      %h1
+        = t "layout.header.year_#{@cup.year}.title"
+        = @cup.year
+        %br
+        %small
+          - if @cup.end_on
+            = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
+          - else
+            = "#{l(@cup.start_on, format: :long)}, "
+          = t("layout.header.year_#{@cup.year}.title_em")
+  .row#deadline
+    .col-xs-12.col-md-12.alert.alert-warning
+      - if Time.current > @cup.deadline
+        =raw t("cups.show.deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
+      - else
+        =raw t("cups.show.deadline", deadline: I18n.l(@cup.deadline, format: :long))
+
+  .row#program
+    .col-xs-12.col-md-12
+      %h2= t 'cups.show.program.title'
+    - @grouped_events.each do |date, events|
+      .col-xs-12.col-md-6
+        %table.table
+          %thead
+            %tr
+              %td{colspan: 2}
+                %h3
+                  = l date, format: :short
+          %tbody
+            - for event in events
+              %tr
+                %th
+                  = event.start_on.to_s(:time_only)
+                %td
+                  = event.name
+
+  .row#categories_and_fees
+    #categories.col-xs-12.col-md-6
+      %h2= t 'cups.show.categories.title'
+      %table.table
+        %tbody
+          - @cup.individual_categories.each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+
+          - @cup.team_categories.each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                = "#{c.description},"
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+
+    #fees.col-xs-12.col-md-6
+      %h2= t 'cups.show.fees.title'
+      %table.table
+        %tbody
+          %tr
+            %th=raw t 'cups.show.fees.adults.title'
+            %td=raw t 'cups.show.fees.adults.fee', adult_fees_chf: @cup.adult_fees_chf, adult_fees_eur: @cup.adult_fees_eur
+          %tr
+            %th=raw t 'cups.show.fees.juniors.title'
+            %td=raw t 'cups.show.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
+          - @cup.products.each do |product|
+            %tr
+              %th= product.name
+              %td= "#{product.fee_chf} CHF / #{product.fee_eu} €"
+
+  .row.venue
+    .col-xs-12.col-md-12.venue-title
+      %h2= t 'cups.show.venue.title'
+    .col-xs-12.col-md-6.venue-details
+      %p=raw t 'cups.show.venue.a', link_to_location: link_to('Turnhalle Schule Grüenau, Wattwil', 'https://map.search.ch/Turnhalle+Schule+Grüenau/')
+      %h3= t 'cups.show.venue.address'
+      %p
+        Turnhalle Schule Grüenau
+        %br
+        Grüenaustrasse 13/15
+        %br
+        9630 Wattwil
+        %em
+          GPS: 47.3035119,9.0815819
+    .col-xs-12.col-md-6.venue-map
+      %iframe{src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2705.5541455236553!2d9.081581915620013!3d47.303511879165725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479ac4c03c6deb05%3A0x9576d3d7165d5767!2sGr%C3%BCenaustrasse+13%2C+9630+Wattwil!5e0!3m2!1sfr!2sch!4v1505070547989"}
+  .row.accomodation_contact
+    .col-xs-12.col-md-6.venue
+      %h2= t 'cups.show.accomodation.title'
+      %h3 Hotels in der Nähe der Turnhalle
+      %table.table
+        %tbody
+          %tr
+            %th 0.4 km
+            %td Restaurant NATIONAL, Näppisuelistrasse 10, 9630 Wattwil
+          %tr
+            %th 2.7 km
+            %td Kaffee Huber, Poststrasse 2, 9620 Lichtensteig
+          %tr
+            %th 0.8 km
+            %td Fazenda – Klosterhof, Wattwil
+          %tr
+            %th 9.8 km
+            %td Hotel Sonne, Hauptstrasse 31, 9643 Krummenau
+          %tr
+            %th 10.0 km
+            %td Hotel Adler, Hauptstrasse 39, 9643 Krummenau
+            %tr
+              %th 13.4 km
+              %td Hotel Sternen, Hauptstrasse 28, 9650 Nesslau
+
+    .col-xs-12.col-md-6.contact
+      %h2= t 'cups.show.contact.title'
+      %p=raw t 'cups.show.contact.text', mail: mail_to("annick.chevillot@bluewin.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")

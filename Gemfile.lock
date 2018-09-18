@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/Compass/compass-rails.git
+  remote: https://github.com/Compass/compass-rails
   revision: be1f7516a8e781bedc6bd3cc34d5395c7c72b3f3
   specs:
     compass-rails (3.1.0)
@@ -8,7 +8,7 @@ GIT
       sprockets (< 4.0)
 
 GIT
-  remote: https://github.com/bernat/best_in_place.git
+  remote: https://github.com/bernat/best_in_place
   revision: bc00bb7912193ea5c9c8984455cb5fe01905e6cb
   specs:
     best_in_place (3.1.1)
@@ -16,7 +16,7 @@ GIT
       railties (>= 3.2)
 
 GIT
-  remote: https://github.com/yannis/kendocup.git
+  remote: https://github.com/yannis/kendocup
   revision: 85f01bf7cf97e066691aa001592e41ef341ae3ba
   specs:
     kendocup (0.0.1)
