@@ -18,8 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem "devise", "4.3.0"
-gem "cancancan", "1.13.1"
+gem "devise"
+gem "cancancan"
 
 # gem 'omniauth-twitter'
 gem 'omniauth-facebook', "4.0.0"
