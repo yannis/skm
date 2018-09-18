@@ -7,6 +7,8 @@ gem 'xmlrpc'
 gem 'rails', '4.2.10'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.21'
+
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "coffee-rails"
