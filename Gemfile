@@ -56,7 +56,7 @@ gem "kendocup", git: "https://github.com/yannis/kendocup"
 gem 'bootstrap-sass', '~> 3.3.4'
 
 gem 'simple_form'
-
+gem 'rollbar'
 gem "figaro"
 
 gem 'best_in_place', git: 'https://github.com/bernat/best_in_place'
