@@ -77,6 +77,9 @@
           %tr
             %th=raw t 'cups.show.fees.juniors.title'
             %td.text-right=raw t 'cups.show.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
+          %tr
+            %th=raw t 'cups.show.fees.teams.title'
+            %td.text-right=raw t 'cups.show.fees.teams.fee', team_fees_chf: 20
           - @cup.products.each do |product|
             %tr
               %th= product.name
@@ -85,6 +88,7 @@
                   À la carte
                 - else
                   = "#{product.fee_chf} CHF"
+
 
   .row.venue
     .col-xs-12.col-md-12.venue-title

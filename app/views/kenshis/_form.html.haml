@@ -30,46 +30,46 @@
                 %p.errors= p.errors.full_messages.to_sentence
     - if @cup.individual_categories.present?
       %h4= t("kenshis.form.individual_categories")
-    - @cup.individual_categories.all.each do |c|
-      - if @kenshi.takes_part_to?(c)
-        - p = @kenshi.participations.detect{|p| p.category == c}
-        = f.fields_for :participations, p do |g|
-          %div{class: "form-group #{p.errors.present? ? "has-error" : ""}"}
+      - @cup.individual_categories.all.each do |c|
+        - if @kenshi.takes_part_to?(c)
+          - p = @kenshi.participations.detect{|p| p.category == c}
+          = f.fields_for :participations, p do |g|
+            %div{class: "form-group #{p.errors.present? ? "has-error" : ""}"}
+              .col-sm-10.col-sm-offset-2
+                - if p.persisted?
+                  = label_tag "kenshi_individual_categories_#{c.id}", c.name
+                  = label_tag "#{g.object_name}[_destroy]", "<span class='glyphicon glyphicon-trash'></span>".html_safe
+                  = check_box_tag "#{g.object_name}[_destroy]"
+                - else
+                  = check_box_tag "kenshi[individual_category_ids][]", c.id, @kenshi.takes_part_to?(c), id: "kenshi_individual_categories_#{c.id}"
+                  = label_tag "kenshi_individual_categories_#{c.id}", c.name
+                - if c.description.present?
+                  = simple_format(c.description, wrapper_tag: nil, class: 'help-block')
+                - if p.errors.present?
+                  %p.help-block= p.errors.full_messages_for(:category).to_sentence
+
+        - else
+          .form-group
             .col-sm-10.col-sm-offset-2
-              - if p.persisted?
-                = label_tag "kenshi_individual_categories_#{c.id}", c.name
-                = label_tag "#{g.object_name}[_destroy]", "<span class='glyphicon glyphicon-trash'></span>".html_safe
-                = check_box_tag "#{g.object_name}[_destroy]"
-              - else
-                = check_box_tag "kenshi[individual_category_ids][]", c.id, @kenshi.takes_part_to?(c), id: "kenshi_individual_categories_#{c.id}"
-                = label_tag "kenshi_individual_categories_#{c.id}", c.name
-
-              - if p.description
-                = simple_format p.description, wrapper_tag: nil, class: 'help-block'
-              - if p.errors.present?
-                %p.help-block= p.errors.full_messages_for(:category).to_sentence
-
-      - else
-        .form-group
-          .col-sm-10.col-sm-offset-2
-            = check_box_tag "kenshi[individual_category_ids][]", c.id, false, id: "kenshi_individual_categories_#{c.id}"
-            = label_tag "kenshi_individual_categories_#{c.id}", c.name
+              = check_box_tag "kenshi[individual_category_ids][]", c.id, false, id: "kenshi_individual_categories_#{c.id}"
+              = label_tag "kenshi_individual_categories_#{c.id}", c.name
   - if @cup.products.present?
     = field_set_tag "Extra" do
       - @cup.products.all.each do |p|
+        - price = p.fee_chf > 0 ? "#{p.fee_chf} CHF" : "A la carte"
         .form-group
           .col-sm-10.col-sm-offset-2
             - if @kenshi.purchased?(p)
               - purchase = @kenshi.purchases.detect{|purchase| purchase.product == p}
               = f.fields_for :purchases, purchase do |g|
-                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF)"
+                = g.label :product_id, "#{p.name} (#{price})"
                 = g.label :_destroy, "<span class='glyphicon glyphicon-trash'></span>".html_safe
                 = g.check_box :_destroy
             - else
               - purchase = @kenshi.purchases.new(product: p)
               = f.fields_for :purchases, purchase do |g|
                 = check_box_tag "#{g.object_name}[product_id]", p.id
-                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF)"
+                = g.label :product_id, "#{p.name} (#{price})"
             - if p.description
               = simple_format p.description, wrapper_tag: nil, class: 'help-block'
 
