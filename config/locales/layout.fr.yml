@@ -11,7 +11,9 @@ fr:
       year_2017:
         title: SKM
         title_em: "Wattwil, Suisse"
-    footer:
+      year_2018:
+        title: Championnats Suisses de kendo
+        title_em: "Allschwil, Suisse"
     footer:
       cright: Le site des SKM a été créé par la section kendo du
       media: "Photos, vidéos, liens and plus encore…"

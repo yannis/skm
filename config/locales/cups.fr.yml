@@ -55,6 +55,8 @@ fr:
 
       accomodation:
         title: Logement
+        subtitle: Autres hôtels de la région
+        anlage: "Il est possible de passer la nuit dans le gymnase. Veuillez l'indiquer lors de l'inscription et apporter un sac de couchage/tapis de sol. Prix avec petit-déjeuner sFr. 15.-"
         # dormitory: "Comme chaque année, vous pourrez dormir au dortoir des Charmettes (réservation lors de l'inscription)."
 
         dormitory: "Malheureusement cette année nous n'avons pas accès au dortoir habituel. Comme alternative, vous pouvez passer la nuit à <a href='http://www.ville-geneve.ch/plan-ville/securite/dortoirs-protection-civile-paquis/' target='_blank'>l'abri PC des Pâquis</a> (réservation lors de l'inscription)."

@@ -43,6 +43,9 @@
               - else
                 = check_box_tag "kenshi[individual_category_ids][]", c.id, @kenshi.takes_part_to?(c), id: "kenshi_individual_categories_#{c.id}"
                 = label_tag "kenshi_individual_categories_#{c.id}", c.name
+
+              - if p.description
+                = simple_format p.description, wrapper_tag: nil, class: 'help-block'
               - if p.errors.present?
                 %p.help-block= p.errors.full_messages_for(:category).to_sentence
 
@@ -59,18 +62,16 @@
             - if @kenshi.purchased?(p)
               - purchase = @kenshi.purchases.detect{|purchase| purchase.product == p}
               = f.fields_for :purchases, purchase do |g|
-                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF/#{p.fee_eu} €)"
+                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF)"
                 = g.label :_destroy, "<span class='glyphicon glyphicon-trash'></span>".html_safe
                 = g.check_box :_destroy
-              / = f.fields_for :purchases, purchase do |g|
-              /   = g.label :_destroy, "#{p.name} (#{p.fee_chf} CHF/#{p.fee_eu} €)"
-              /   = g.hidden_field :id
-              /   = hidden_field_tag "#{g.object_name}[_destroy]", 1
             - else
               - purchase = @kenshi.purchases.new(product: p)
               = f.fields_for :purchases, purchase do |g|
                 = check_box_tag "#{g.object_name}[product_id]", p.id
-                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF/#{p.fee_eu} €)"
+                = g.label :product_id, "#{p.name} (#{p.fee_chf} CHF)"
+            - if p.description
+              = simple_format p.description, wrapper_tag: nil, class: 'help-block'
 
   .actions
     = submit_or_cancel_form(f, f.object.new_record? ? t(".button.create") : t(".button.update"))

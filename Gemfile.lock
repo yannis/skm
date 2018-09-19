@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/yannis/kendocup
-  revision: 85f01bf7cf97e066691aa001592e41ef341ae3ba
+  revision: 50a06b758aaa7a2ee3e171504a90896d5bfe658b
   specs:
     kendocup (0.0.1)
       activeadmin (= 1.0.0)
