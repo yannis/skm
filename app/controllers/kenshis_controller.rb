@@ -178,7 +178,7 @@ class KenshisController < ApplicationController
   end
 
   def destroy
-    @kenshi.destroy ? notice = t('kenshis.destroy.notice') : alert = t('kenshis.destroy.notice')
+    @kenshi.destroy ? notice = t('kenshis.destroy.notice') : alert = t('kenshis.destroy.alert')
     respond_with @kenshi do |format|
       format.html {
         flash[:notice] = notice

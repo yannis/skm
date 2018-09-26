@@ -143,7 +143,7 @@ RSpec.describe KenshisController, type: :controller do
 
         it {expect(assigns(:kenshi)).to eql basic_user_kenshi}
         it {expect(response).to redirect_to(cup_user_path(cup, basic_user_kenshi.user))}
-        it {expect(flash[:notice]).to match /Registration successfully updated/}
+        it {expect(flash[:notice]).to match /Registrierung erfolgreich aktualisiert/}
         it {expect(basic_user_kenshi.reload.last_name).to eql 'Alanma2'}
       end
 
@@ -169,7 +169,7 @@ RSpec.describe KenshisController, type: :controller do
 
         it {expect(assigns(:kenshi)).to eql basic_user_kenshi}
         it {expect(@kenshi_count - Kendocup::Kenshi.count).to eql 1}
-        it {expect(flash[:notice]).to match /Kenshi successfully destroyed/}
+        it {expect(flash[:notice]).to match /Kenshi erfolgreich zerstört/}
         it {expect(response).to redirect_to(cup_user_path(cup, basic_user))}
       end
 

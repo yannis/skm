@@ -1,23 +1,23 @@
 %p.devise-shared-links
   - if devise_mapping.omniauthable?
-    = link_to "<i class='fa fa-facebook'></i> | #{t("devise.links.oauth")} Facebook".html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-sm btn-facebook"
+    = link_to "<i class='fa fa-facebook'></i> | #{t("devise.shared.links.oauth")} Facebook".html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-sm btn-facebook"
     %br
   - if controller_name != 'sessions'
-    = link_to t("devise.links.sign_in"), new_user_session_path
+    = link_to t("devise.shared.links.sign_in"), new_user_session_path
     %br
 
   - if devise_mapping.registerable?
-    = link_to t("devise.links.sign_up"), new_user_registration_path
+    = link_to t("devise.shared.links.sign_up"), new_user_registration_path
     %br
 
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-    = link_to t("devise.links.forgot"), new_user_password_path
+    = link_to t("devise.shared.links.forgot_your_password"), new_user_password_path
     %br
 
   - if devise_mapping.confirmable? && controller_name != 'confirmations'
-    = link_to t("devise.links.confirmation"), new_user_confirmation_path
+    = link_to t("devise.shared.links.didn_t_receive_confirmation_instructions"), new_user_confirmation_path
     %br
 
   - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
-    = link_to t("devise.links.unlock"), new_user_unlock_path
+    = link_to t("devise.shared.links.unlock"), new_user_unlock_path
     %br
