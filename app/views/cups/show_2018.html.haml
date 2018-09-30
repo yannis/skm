@@ -58,7 +58,7 @@
           - @cup.team_categories.each do |c|
             %tr
               %th= c.name.capitalize
-              %td.text-right
+              %td
                 - if c.min_age
                   = c.max_age ? t("categories.from") : t("categories.dès")
                   = c.min_age
