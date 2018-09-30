@@ -1,7 +1,6 @@
-fr:
+de:
   categories:
-    from: de
-    to: à
-    dès: dès
-    yo: ans
-
+    from: von
+    to: bis
+    dès: von
+    yo: Jahre alt

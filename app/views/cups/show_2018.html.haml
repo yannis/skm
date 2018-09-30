@@ -45,7 +45,7 @@
           - @cup.individual_categories.order(:created_at).each do |c|
             %tr
               %th= c.name.capitalize
-              %td.text-right
+              %td
                 - if c.min_age
                   = c.max_age ? t("categories.from") : t("categories.dès")
                   = c.min_age
@@ -53,7 +53,8 @@
                   = t("categories.to")
                   = c.max_age
                 = t("categories.yo")
-
+                - if c.description.present?
+                  %em= simple_format c.description
           - @cup.team_categories.each do |c|
             %tr
               %th= c.name.capitalize
