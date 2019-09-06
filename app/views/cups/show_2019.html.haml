@@ -1,0 +1,157 @@
+.col-xs-12.col-md-12
+  .row
+    .jumbotron
+      %h1
+        = t "layout.header.year_#{@cup.year}.title"
+        = @cup.year
+        %br
+        %small
+          - if @cup.end_on
+            = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
+          - else
+            = "#{l(@cup.start_on, format: :long)}, "
+          = t("layout.header.year_#{@cup.year}.title_em")
+  .row#deadline
+    .col-xs-12.col-md-12.alert.alert-warning
+      - if Time.current > @cup.deadline
+        =raw t("cups.show.deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
+      - else
+        =raw t("cups.show.deadline", deadline: I18n.l(@cup.deadline, format: :long))
+
+  .row#program
+    .col-xs-12.col-md-12
+      %h2= t 'cups.show.program.title'
+    - @grouped_events.each do |date, events|
+      .col-xs-12.col-md-6
+        %table.table
+          %thead
+            %tr
+              %td{colspan: 2}
+                %h3
+                  = l date, format: :short
+          %tbody
+            - for event in events
+              %tr
+                %th
+                  = event.start_on.to_s(:time_only)
+                %td.text-right
+                  = event.name
+
+  .row#categories_and_fees
+    #categories.col-xs-12.col-md-6
+      %h2= t 'cups.show.categories.title'
+      %table.table
+        %tbody
+          - @cup.individual_categories.order(:created_at).each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+                - if c.description.present?
+                  %em= simple_format c.description
+          - @cup.team_categories.each do |c|
+            %tr
+              %th= c.name.capitalize
+              %td
+                - if c.min_age
+                  = c.max_age ? t("categories.from") : t("categories.dès")
+                  = c.min_age
+                - if c.max_age
+                  = t("categories.to")
+                  = c.max_age
+                = t("categories.yo")
+                - if c.description.present?
+                  %em= simple_format c.description
+
+    #fees.col-xs-12.col-md-6
+      %h2= t 'cups.show.fees.title'
+      %table.table
+        %tbody
+          %tr
+            %th=raw t 'cups.show.fees.adults.title'
+            %td.text-right=raw t 'cups.show.fees.adults.fee', adult_fees_chf: @cup.adult_fees_chf, adult_fees_eur: @cup.adult_fees_eur
+          %tr
+            %th=raw t 'cups.show.fees.juniors.title'
+            %td.text-right=raw t 'cups.show.fees.juniors.fee', junior_fees_chf: @cup.junior_fees_chf, junior_fees_eur: @cup.junior_fees_eur
+          %tr
+            %th=raw t 'cups.show.fees.teams.title'
+            %td.text-right=raw t 'cups.show.fees.teams.fee', team_fees_chf: 20
+          - @cup.products.each do |product|
+            %tr
+              %th= product.name
+              %td.text-right
+                - if product.fee_chf == 0
+                  À la carte
+                - else
+                  = "#{product.fee_chf} CHF"
+
+
+  .row.venue
+    .col-xs-12.col-md-12.venue-title
+      %h2= t 'cups.show.venue.title'
+    .col-xs-12.col-md-6.venue-details
+      %p=raw t 'cups.show.venue.a', link_to_location: link_to('Turnhalle Schulhaus Gartenhof', 'https://goo.gl/SzzfX1')
+      %p
+        Turnhalle Schulhaus Gartenhof
+        %br
+        Lettenweg 30
+        %br
+        4123 Allschwil
+    .col-xs-12.col-md-6.venue-map
+      %iframe{src: "https://www.google.com/maps/d/u/0/embed?mid=10Wu1rQOiUW_thJGK7fW-s3TT1yBkmnW4"}
+  .row.accomodation_contact
+    .col-xs-12.col-md-6.venue
+      %h2= t 'cups.show.accomodation.title'
+      %p= t 'cups.show.accomodation.anlage'
+      %h3= t 'cups.show.accomodation.subtitle'
+      %dl
+        %dt 3 Sterne Hotel Schlüssel Allschwil
+        %dd
+          Mühlebachweg 1, 4123 Allschwil
+          %br +41 61 481 00 40
+          www.schluessel-allschwil.ch
+        %dt
+          Basel Backpack
+        %dd
+          Dornacherstrasse 192, 4053 Basel
+          %br +41 61 333 00 37
+          www.baselbackpack.com
+        %dt
+          YMCA Hostel
+        %dd
+          Gempenstrasse 64, 4053 Basel
+          %br +41 61 361 73 09
+          www.ymcahostelbasel.ch
+        %dt
+          Jugendherberege Basel
+        %dd
+          St. Alban-Kirchrain 10, 4052 Basel
+          %br +41 61 272 05 72
+          www.youthhostel.ch
+        %dt Ibis Basel Bahnhof
+        %dd
+          Margarethenstrasse 33-35, 4053 Basel
+          %br +41 61 201 07 07
+          www.accorhotels.com
+        %dt Hôtel et Spa La Villa K
+        %dd
+          1 Rue de Lectoure, 68300 Saint-Louis, Frankreich
+          %br +33 3 89 70 93 40
+          www.lavillak.com
+        %dt hotelF1 Mulhouse Bâle Aéroport
+        %dd
+          3 Allée des Pins, 68300 Saint-Louis, Frankreich
+          %br +33 891 70 53 29
+          www.accorhotels.com
+
+
+
+    .col-xs-12.col-md-6.contact
+      %h2= t 'cups.show.contact.title'
+      %p=raw t 'cups.show.contact.text', mail: mail_to("info@tsk-basel.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")
