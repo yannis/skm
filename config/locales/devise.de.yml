@@ -108,6 +108,7 @@ de:
       update_needs_confirmation: Ihre Daten wurden aktualisiert, aber Sie müssen Ihre neue E-Mail-Adresse bestätigen. Sie erhalten in wenigen Minuten eine E-Mail, mit der Sie die Änderung Ihrer E-Mail-Adresse abschließen können.
       updated: Ihre Daten wurden aktualisiert.
     sessions:
+      title: "Sign in"
       already_signed_out: Erfolgreich abgemeldet.
       new:
         sign_in: Anmelden

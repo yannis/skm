@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.5.0"
-
-gem 'xmlrpc'
+ruby "2.5.5"
 
 # Bundle edge Rails instead: gem 'rails', git: 'https://github.com/rails/rails'
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.21'
 
@@ -31,12 +29,12 @@ gem 'activeadmin'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem "jquery-ui-rails"
-gem "select2-rails"
+gem "select2-rails", "3.5.10"
 gem "bootstrap3-datetimepicker-rails"
 gem "font-awesome-sass"
 gem 'compass-rails', git: "https://github.com/Compass/compass-rails"
 
-gem "asset_sync"
+# gem "asset_sync"
 gem 'gibbon', '1.2.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
@@ -53,7 +51,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "kendocup", git: "https://github.com/yannis/kendocup"
 
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'simple_form'
 gem 'rollbar'
@@ -66,7 +64,7 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

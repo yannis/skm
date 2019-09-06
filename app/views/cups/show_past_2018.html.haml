@@ -1,0 +1,43 @@
+.col-xs-12.col-md-8
+  .row
+    .jumbotron
+      %h1
+        = t "layout.header.year_#{@cup.year}.title"
+        = @cup.year
+        %br
+        %small
+          - if @cup.end_on
+            = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
+          - else
+            = "#{l(@cup.start_on, format: :long)}, "
+          = t("layout.header.year_#{@cup.year}.title_em")
+  .row#deadline
+    .col-xs-12.col-md-12.alert.alert-warning
+      - if Time.current > @cup.deadline
+        =raw t("cups.show.deadline_passed", deadline: I18n.l(@cup.deadline, format: :long))
+      - else
+        =raw t("cups.show.deadline", deadline: I18n.l(@cup.deadline, format: :long))
+
+  .row#over
+    .col-xs-12.col-md-12.alert.alert-warning
+      =raw t("cups.show.over")
+  .row#results
+    .col-xs-12.col-md-12
+      %h2= t 'cups.show.results.title'
+      %p= t 'cups.show.results.coming_soon'
+
+
+.col-xs-12.col-md-4
+
+  - if @headline.present?
+    .panel.panel-default.headlines
+      .panel-heading
+        %h2= t 'headlines.title'
+      .panel-body
+        %h4
+          = @headline.title
+          %small
+            = @headline.created_at.to_s :day_month_year
+        =raw @headline.content
+      .panel-footer
+        = link_to t('headlines.link'), cup_headlines_path(@cup)
