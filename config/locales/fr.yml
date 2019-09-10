@@ -42,7 +42,7 @@ fr:
       default: "%d/%m/%Y"
       short: "%e %b"
       long: "%e %B %Y"
-      day_only: "%d"
+      day_only: "%e"
     month_names:
       - ~
       - janvier

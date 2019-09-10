@@ -9,5 +9,5 @@ en:
     formats:
       # default: "%d/%m/%Y"
       # short: "%e %b"
-      # long: "%e %B %Y"
-      day_only: "%d"
+      long: "%e %B %Y"
+      day_only: "%e"

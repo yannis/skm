@@ -3,11 +3,10 @@
     .jumbotron
       %h1
         = t "layout.header.year_#{@cup.year}.title"
-        = @cup.year
         %br
         %small
           - if @cup.end_on
-            = "#{l(@cup.start_on, format: :day_only)}–#{l(@cup.end_on, format: :long)},"
+            = "#{l(@cup.start_on, format: :day_only)} – #{l(@cup.end_on, format: :long)},"
           - else
             = "#{l(@cup.start_on, format: :long)}, "
           = t("layout.header.year_#{@cup.year}.title_em")
@@ -44,7 +43,7 @@
         %tbody
           - @cup.individual_categories.order(:created_at).each do |c|
             %tr
-              %th= c.name.capitalize
+              %th= c.name
               %td
                 - if c.min_age
                   = c.max_age ? t("categories.from") : t("categories.dès")
@@ -52,12 +51,12 @@
                 - if c.max_age
                   = t("categories.to")
                   = c.max_age
-                = t("categories.yo")
+                = t("categories.yo") + "."
                 - if c.description.present?
                   %em= simple_format c.description
           - @cup.team_categories.each do |c|
             %tr
-              %th= c.name.capitalize
+              %th= c.name
               %td
                 - if c.min_age
                   = c.max_age ? t("categories.from") : t("categories.dès")
@@ -96,62 +95,18 @@
     .col-xs-12.col-md-12.venue-title
       %h2= t 'cups.show.venue.title'
     .col-xs-12.col-md-6.venue-details
-      %p=raw t 'cups.show.venue.a', link_to_location: link_to('Turnhalle Schulhaus Gartenhof', 'https://goo.gl/SzzfX1')
       %p
-        Turnhalle Schulhaus Gartenhof
+        = link_to('Salle omnisports de la Vallée de la Jeunesse', 'https://goo.gl/maps/ifMTT5LJTMzNgjJu6')
         %br
-        Lettenweg 30
+        Chemin de la Prairie 11b
         %br
-        4123 Allschwil
+        1007 Lausanne
     .col-xs-12.col-md-6.venue-map
-      %iframe{src: "https://www.google.com/maps/d/u/0/embed?mid=10Wu1rQOiUW_thJGK7fW-s3TT1yBkmnW4"}
+      %iframe{src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2745.276240534752!2d6.602969215588115!3d46.52243527912765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c31cdc985ef21%3A0xc148bc33eb28f48a!2sSports%20Hall%20Of%20The%20Vall%C3%A9e%20De%20La%20Jeunesse!5e0!3m2!1sen!2sch!4v1568143550828!5m2!1sen!2sch"}
   .row.accomodation_contact
     .col-xs-12.col-md-6.venue
       %h2= t 'cups.show.accomodation.title'
       %p= t 'cups.show.accomodation.anlage'
-      %h3= t 'cups.show.accomodation.subtitle'
-      %dl
-        %dt 3 Sterne Hotel Schlüssel Allschwil
-        %dd
-          Mühlebachweg 1, 4123 Allschwil
-          %br +41 61 481 00 40
-          www.schluessel-allschwil.ch
-        %dt
-          Basel Backpack
-        %dd
-          Dornacherstrasse 192, 4053 Basel
-          %br +41 61 333 00 37
-          www.baselbackpack.com
-        %dt
-          YMCA Hostel
-        %dd
-          Gempenstrasse 64, 4053 Basel
-          %br +41 61 361 73 09
-          www.ymcahostelbasel.ch
-        %dt
-          Jugendherberege Basel
-        %dd
-          St. Alban-Kirchrain 10, 4052 Basel
-          %br +41 61 272 05 72
-          www.youthhostel.ch
-        %dt Ibis Basel Bahnhof
-        %dd
-          Margarethenstrasse 33-35, 4053 Basel
-          %br +41 61 201 07 07
-          www.accorhotels.com
-        %dt Hôtel et Spa La Villa K
-        %dd
-          1 Rue de Lectoure, 68300 Saint-Louis, Frankreich
-          %br +33 3 89 70 93 40
-          www.lavillak.com
-        %dt hotelF1 Mulhouse Bâle Aéroport
-        %dd
-          3 Allée des Pins, 68300 Saint-Louis, Frankreich
-          %br +33 891 70 53 29
-          www.accorhotels.com
-
-
-
     .col-xs-12.col-md-6.contact
       %h2= t 'cups.show.contact.title'
-      %p=raw t 'cups.show.contact.text', mail: mail_to("info@tsk-basel.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")
+      %p=raw t 'cups.show.contact.text', mail: mail_to("vice-president@kendo.ch", nil, encode: "hex", replace_at: "_at_", replace_dot: "_dot_")

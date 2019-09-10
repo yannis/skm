@@ -49,14 +49,14 @@ fr:
 
       venue:
         title: Où est-ce que ça se passe?
-        a: "Cette année la compétition se déroulera au %{link_to_location}."
+        a: "Cette année la compétition se déroulera à la %{link_to_location}."
         address: Coordonnées
         map_link: Agrandir le plan
 
       accomodation:
         title: Logement
         subtitle: Autres hôtels de la région
-        anlage: "Il est possible de passer la nuit dans le gymnase. Veuillez l'indiquer lors de l'inscription et apporter un sac de couchage/tapis de sol. Prix avec petit-déjeuner sFr. 15.-"
+        anlage: "Il est possible de passer la nuit au dojo du Budokan Lausanne. Veuillez l'indiquer lors de l'inscription et apporter un sac de couchage/tapis de sol. Prix avec petit-déjeuner sFr. 10.-"
         # dormitory: "Comme chaque année, vous pourrez dormir au dortoir des Charmettes (réservation lors de l'inscription)."
 
         dormitory: "Malheureusement cette année nous n'avons pas accès au dortoir habituel. Comme alternative, vous pouvez passer la nuit à <a href='http://www.ville-geneve.ch/plan-ville/securite/dortoirs-protection-civile-paquis/' target='_blank'>l'abri PC des Pâquis</a> (réservation lors de l'inscription)."

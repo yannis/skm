@@ -32,9 +32,9 @@ de:
     - Samstag
     formats:
       default: "%d.%m.%Y"
-      long: "%e. %B %Y"
+      long: "%e %B %Y"
       short: "%e. %b"
-      day_only: "%d"
+      day_only: "%e"
     month_names:
     -
     - Januar
