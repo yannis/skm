@@ -20,7 +20,7 @@ gem "devise"
 gem "cancancan"
 
 # gem 'omniauth-twitter'
-gem 'omniauth-facebook', "4.0.0"
+gem 'omniauth-facebook', "~> 4.0.0"
 # gem 'omniauth-github'
 # gem 'omniauth-google'
 
