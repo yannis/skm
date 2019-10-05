@@ -56,22 +56,28 @@
   - if @cup.products.present?
     = field_set_tag "Extra" do
       - @cup.products.all.each do |p|
-        - price = p.fee_chf > 0 ? "#{p.fee_chf} CHF" : "A la carte"
         .form-group
+          - price = p.fee_chf == 0 ? t("cups.show.fees.variable") : "#{p.fee_chf} CHF"
+          - if p.name_fr.downcase.include?('dojo')
+            - price += " – #{20 - p.purchases.size} #{t 'cups.show.accomodation.available'}"
+          - product_label_text = "#{p.name} (#{price})"
           .col-sm-10.col-sm-offset-2
             - if @kenshi.purchased?(p)
               - purchase = @kenshi.purchases.detect{|purchase| purchase.product == p}
               = f.fields_for :purchases, purchase do |g|
-                = g.label :product_id, "#{p.name} (#{price})"
+                = g.label :product_id, product_label_text
                 = g.label :_destroy, "<span class='glyphicon glyphicon-trash'></span>".html_safe
                 = g.check_box :_destroy
             - else
-              - purchase = @kenshi.purchases.new(product: p)
-              = f.fields_for :purchases, purchase do |g|
-                = check_box_tag "#{g.object_name}[product_id]", p.id
-                = g.label :product_id, "#{p.name} (#{price})"
-            - if p.description
-              = simple_format p.description, wrapper_tag: nil, class: 'help-block'
+              - if product_available?(p)
+                - purchase = @kenshi.purchases.new(product: p)
+                = f.fields_for :purchases, purchase do |g|
+                  = check_box_tag "#{g.object_name}[product_id]", p.id
+                  = g.label :product_id, product_label_text
+              - else
+                %p= t('kenshis.form.not_avalaible', product_name: p.name)
+            - if p.description.present?
+              %p.help-block= p.description
 
   .actions
     = submit_or_cancel_form(f, f.object.new_record? ? t(".button.create") : t(".button.update"))

@@ -43,7 +43,7 @@
             = participation_admin_links participation
       %tr
         %th{colspan: 2} Total competition fees
-        %td= "#{kenshi.competition_fee(:chf)} CHF / #{kenshi.competition_fee(:eur)} €"
+        %td= "#{kenshi.competition_fee(:chf)} CHF"
         %td
     - if kenshi.purchases.present?
       %tr
@@ -52,15 +52,15 @@
       - kenshi.purchases.each do |purchase|
         %tr
           %th{colspan: 2}= purchase.product.name
-          %td= "#{purchase.product.fee_chf} CHF / #{purchase.product.fee_eu} €"
+          %td= "#{purchase.product.fee_chf} CHF"
           %td= purchase_admin_links purchase
       %tr
         %th{colspan: 2} Total extra fees
-        %td= "#{kenshi.products_fee(:chf)} CHF / #{kenshi.products_fee(:eur)} €"
+        %td= "#{kenshi.products_fee(:chf)} CHF"
         %td
     %tr
       %th{colspan: 2}
         %h4 Total fees
       %th
-        = "#{kenshi.fees(:chf)} CHF / #{kenshi.fees(:eur)} €"
+        = "#{kenshi.fees(:chf)} CHF"
       %th

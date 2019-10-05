@@ -27,7 +27,7 @@
           %th
             %h4 Fees due
           %th
-            = "#{@user.fees(:chf, @current_cup)} CHF / #{@user.fees(:eur, @current_cup)} €"
+            = "#{@user.fees(:chf, @current_cup)} CHF"
     = user_admin_links @user
 
   .col-xs-12.col-md-6
@@ -42,4 +42,3 @@
         - else
           %p
             =raw t(".register", yourself: link_to(t(".yourself"), new_cup_user_kenshi_path(@current_cup, current_user, self: true, locale: I18n.locale)), someone: link_to(t(".someone"), new_cup_user_kenshi_path(@current_cup, current_user, locale: I18n.locale)))
-
